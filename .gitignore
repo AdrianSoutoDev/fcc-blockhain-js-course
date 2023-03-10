@@ -376,3 +376,4 @@ logs
 
 .deps/
 artifacts/
+*\package-lock.json
