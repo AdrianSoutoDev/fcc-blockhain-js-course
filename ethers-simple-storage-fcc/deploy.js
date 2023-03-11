@@ -9,13 +9,17 @@ async function main() {
   const provider = new ethers.JsonRpcProvider("HTTP://192.168.56.1:7545");
 
   const wallet = new ethers.Wallet(
-    "0xa85a27b3e1a365e7f79ea0085ccd1641965cd49b8a2da5737ecf14018e97a9d0",
+    "0x4aef37509b647eebed3c2f9f997d49a08c0215af3bb68f8be7c1084ee0c299a1",
     provider
   );
 
-  const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf-8");
+  const abi = fs.readFileSync(
+    "./compiled/SimpleStorage_sol_SimpleStorage.abi",
+    "utf-8"
+  );
+
   const binary = fs.readFileSync(
-    "./SimpleStorage_sol_SimpleStorage.bin",
+    "./compiled/SimpleStorage_sol_SimpleStorage.bin",
     "utf-8"
   );
 
@@ -26,8 +30,8 @@ async function main() {
   // const contract = await contractFactory.deploy({ gasLimit; 100000000});
   const contract = await contractFactory.deploy();
 
-  //deploymentTransaction.wait(1) =>  1 is the number of confirmations we have to wait to resolve the promise
-  const deployReceipt = await contract.deploymentTransaction.wait(1);
+  //deploymentTransaction.wait(1) or waitForDeployment(1); =>  1 is the number of confirmations we have to wait to resolve the promise
+  const deployReceipt = await contract.waitForDeployment(1);
 
   //here we go to deploy only with transasction data
   // const nonce = await wallet.getNonce();

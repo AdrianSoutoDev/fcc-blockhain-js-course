@@ -1,10 +1,10 @@
 {
   "dependencies": {
     "ethers": "6.1.0",
-    "fs-extra": "^11.1.0",
-    "solc": "^0.8.7-fixed"
+    "fs-extra": "11.1.0",
+    "solc": "0.8.7-fixed"
   },
   "scripts": {
-    "compile": "solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol"
+    "compile": "solcjs --bin --abi --include-path node_modules/ --base-path ../contracts/ -o ./compiled ../contracts/SimpleStorage.sol"
   }
 }
