@@ -31,7 +31,7 @@ async function main() {
   const contract = await contractFactory.deploy();
 
   //deploymentTransaction.wait(1) or waitForDeployment(1); =>  1 is the number of confirmations we have to wait to resolve the promise
-  const deployReceipt = await contract.waitForDeployment(1);
+  await contract.waitForDeployment(1);
 
   //here we go to deploy only with transasction data
   // const nonce = await wallet.getNonce();
@@ -51,6 +51,19 @@ async function main() {
   // const sentTxResponse = await wallet.sendTransaction(tx);
   // await sentTxResponse.wait(1);
   // console.log(sentTxResponse);
+
+  const currentFavoriteNumber = await contract.retrieve();
+  console.log(
+    `Current favorite number is: ${currentFavoriteNumber.toString()}`
+  );
+
+  //best practices is pass al parameters to smart contract as strings, not numbers
+  const transactionResponse = await contract.store("7");
+  await transactionResponse.wait(1);
+  const updatedFavoriteNumber = await contract.retrieve();
+  console.log(
+    `Updated favorite number is: ${updatedFavoriteNumber.toString()}`
+  );
 }
 
 main()
