@@ -380,3 +380,13 @@ artifacts/
 */node_modules
 */compiled
 .encryptedKey.json
+
+#hardhat
+coverage
+coverage.json
+typechain
+typechain-types
+
+# Hardhat files
+cache
+artifacts
